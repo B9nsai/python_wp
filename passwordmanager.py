@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import json
 
 class Passwordmanager:
     def __init__(self):
@@ -18,7 +19,8 @@ class Passwordmanager:
     def switch_action(self):
         match self.action:
             case 1:
-                self.create_new_database()
+                self.write_file()
+                #self.create_new_database()
             case 2:
                 self.use_existing_database()
             case 3:
@@ -26,6 +28,28 @@ class Passwordmanager:
 
     def create_new_database(self):
         pass
+
+    def fake_db(self):
+        return [
+            {
+            "name": "leon",
+            "password": "123",
+            "url": "www.123.de",
+            "note": ""
+            },
+            {
+            "name": "hannes",
+            "password": "321",
+            "url": "www.321.de",
+            "note": "hannes"
+            }
+        ]
+
+    def write_file(self):
+        #json_dump = 
+
+        with open("testdb.json", "w") as outfile:
+            outfile.write(json.dumps(self.fake_db(), indent=2))
 
     def use_existing_database(self):
         pass
@@ -39,5 +63,3 @@ class Passwordmanager:
 
 passwordmanager = Passwordmanager()
 passwordmanager.run()
-
-
