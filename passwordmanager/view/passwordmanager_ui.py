@@ -20,4 +20,3 @@ def show_db_menu():
         print("  3) Bereits existierendes Passwort löschen")
         print("  4) Passwort aktualisieren")
         print("  5) Beenden\n")
-        input() #stops application

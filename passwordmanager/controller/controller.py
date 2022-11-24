@@ -5,6 +5,9 @@ sys.path.append('../model')
 from model import fake_db
 
 class controller:
+    def __init__(self):
+        self.action = 0
+
     def read_startup_menu_action(self):
         return int(input("Was möchten sie tun? "))
 
@@ -42,9 +45,9 @@ class controller:
         pass
 
     def write_file(self):
-        fake_db.fake_db()
+        self.fake_db = fake_db.fake_db()
         with open("testdb.json", "w") as outfile:
-            outfile.write(json.dumps(self.fake_db, indent=2))
+            outfile.write(json.dumps(self.fake_db.get_db(), indent=2))
 
     def use_existing_database(self):
         pass
