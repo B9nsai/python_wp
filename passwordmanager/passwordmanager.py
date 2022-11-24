@@ -1,18 +1,12 @@
 #!/usr/bin/python3
 import json
 
+from ui import passwordmanager_ui as ui
+
 class Passwordmanager:
     def __init__(self):
         self.action = 0
-
-    def show_menu(self):
-        print("=============================================")
-        print("               Passwordmanager               ")
-        print("=============================================")
-        print("  1) Neue Passwortdatenbank erstellen        ")
-        print("  2) Existierende Passwortdatenbank verwenden")
-        print("  3) Abbruch \n")
-
+    
     def read_menu_action(self):
         return int(input("Was möchten sie tun? "))
 
@@ -56,7 +50,7 @@ class Passwordmanager:
 
     def run(self):
         while True:
-            self.show_menu()
+            ui.show_menu()
             self.action = self.read_menu_action()
             print("")
             self.switch_action()
