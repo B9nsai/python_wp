@@ -12,15 +12,12 @@ from controller import controller
 
 class Passwordmanager:
     def __init__(self):
-        self.startup_menu_action = 0
         self.controller = controller()
     
     def run(self):
         while True:
-            ui.show_startup_menu()
-            self.startup_menu_action = self.controller.read_startup_menu_action()
-            print("")
-            self.controller.switch_startup_menu_action()
+            self.controller.run_startup_menu()
+            
 
 passwordmanager = Passwordmanager()
 passwordmanager.run()

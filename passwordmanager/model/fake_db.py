@@ -1,5 +1,6 @@
-def fake_db():
-        return [
+class fake_db:
+    def __init__(self):
+        self.__db = [
             {
             "name": "leon",
             "password": "123",
@@ -13,3 +14,9 @@ def fake_db():
             "note": "hannes"
             }
         ]
+
+    def get_db(self):
+        return self.__db
+
+    def set_db(self, db):
+        self.__db = db

@@ -3,28 +3,35 @@ import json
 
 sys.path.append('../model')
 from model import fake_db
-
+from view import passwordmanager_ui as ui
 class controller:
     def __init__(self):
-        self.action = 0
+        self.__startup_menu_action = 0
+        self.__db_action = 0
+
+    def run_startup_menu(self):
+        ui.show_startup_menu()
+        self.read_startup_menu_action()
+        print("")
+        self.switch_startup_menu_action()
 
     def read_startup_menu_action(self):
         return int(input("Was möchten sie tun? "))
 
     def switch_startup_menu_action(self):
-        match self.action:
+        match self.__db_action:
             case 0:
-                #tests
+                #dev tests
                 self.write_file()
             case 1:
-                self.create_new_database()
+                self.__db_action = self.create_new_database()
             case 2:
                 self.use_existing_database()
             case 3:
                 exit()  
 
     def switch_db_menu_action(self):
-        match self.db_action:
+        match self.__db_action:
             case 1:
                 pass
             case 2:
