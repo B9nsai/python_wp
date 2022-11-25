@@ -23,6 +23,9 @@ class Controller:
     def use_existing_database(self):
         self.__db_menu.use_existing_database()
 
+    def set_db_name(self, db_name):
+        self.__db_name = db_name
+
     def get_db_name(self):
         return self.__db_name
 
@@ -75,9 +78,8 @@ class Controller:
                     pass
 
         def create_new_database(self):
-            super.__db_name = input("Bitte geben sie den Namen der Datenbank ein: ")
-            ui.show_db_menu()
-            pass
+            self.__outer.set_db_name(input("Bitte geben sie den Namen der Datenbank ein: "))
+            ui.show_db_menu(self.__outer.get_db_name())
 
         def use_existing_database(self):
             pass
