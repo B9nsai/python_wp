@@ -5,10 +5,6 @@ sys.path.append('../model')
 from model import fake_db
 from view import passwordmanager_ui as ui
 
-
-
-
-
 class Controller:
     def __init__(self):
         self.__startup_menu = self.Startup_menu(self)
@@ -23,13 +19,14 @@ class Controller:
     def use_existing_database(self):
         self.__db_menu.use_existing_database()
 
-    def set_db_name(self, db_name):
-        self.__db_name = db_name
+    def write_file(self):
+        self.__db_menu.write_file()
 
     def get_db_name(self):
         return self.__db_name
 
-
+    def set_db_name(self, db_name):
+        self.__db_name = db_name
 
     class Startup_menu:
         def __init__(self, outer):
@@ -50,7 +47,7 @@ class Controller:
             match self.__action:
                 case 0:
                     #dev tests
-                    self.write_file()
+                    self.__outer.write_file()
                 case 1:
                     self.__outer.create_new_database()
                 case 2:
@@ -62,7 +59,6 @@ class Controller:
         def __init__(self, outer):
             self.__action = 0
             self.__outer = outer 
-
 
         def switch_db_menu_action(self):
             match self.__action:
@@ -85,10 +81,7 @@ class Controller:
             pass
 
         def write_file(self):
-            self.fake_db = fake_db.fake_db()
+            self.fake_db = fake_db.Fake_db()
             with open("testdb.json", "w") as outfile:
                 outfile.write(json.dumps(self.fake_db.get_db(), indent=2))
-
-        def use_existing_database(self):
-            pass
     

@@ -3,8 +3,6 @@ sys.path.append('../controller')
 
 from controller import Controller
 
-
-
 def show_startup_menu():
     print("\n=============================================")
     print("               Passwordmanager               ")
