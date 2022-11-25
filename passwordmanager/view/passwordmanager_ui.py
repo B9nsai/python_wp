@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../controller')
 
-from controller import controller
+from controller import Controller
 
 def show_startup_menu():
     print("=============================================")
@@ -13,7 +13,7 @@ def show_startup_menu():
 
 def show_db_menu():
         print("=============================================")
-        print("               Passwordmanager " + controller.db_name)
+        print("               Passwordmanager " + Controller.db_name)
         print("=============================================")
         print("  1) Bereits existierende Passwörter anzeigen")
         print("  2) Neues Passwort hinzufügen")

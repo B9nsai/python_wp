@@ -8,16 +8,16 @@ sys.path.append('controller')
 
 from view import passwordmanager_ui as ui
 from model import fake_db
-from controller import controller
+from controller import Controller
 
 class Passwordmanager:
     def __init__(self):
-        self.controller = controller()
+        self.controller = Controller()
+
     
     def run(self):
         while True:
-            self.controller.run_startup_menu()
+            self.controller.run()
             
-
 passwordmanager = Passwordmanager()
 passwordmanager.run()

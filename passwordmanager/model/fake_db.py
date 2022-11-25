@@ -1,4 +1,4 @@
-class fake_db:
+class Fake_db:
     def __init__(self):
         self.__db = [
             {
