@@ -1,4 +1,6 @@
-class Fake_db:
+from db_interface import DbInterface
+
+class FakeDb(DbInterface):
     def __init__(self):
         self.__db = [
             {

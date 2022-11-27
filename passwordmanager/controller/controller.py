@@ -28,6 +28,12 @@ class Controller:
     def set_db_name(self, db_name):
         self.__db_name = db_name
 
+    def get_db(self):
+        return self.__db
+
+    def set_db(self, db):
+        self.__db = db
+
     class Startup_menu:
         def __init__(self, outer):
             self.__action = 0
@@ -74,11 +80,11 @@ class Controller:
                     pass
 
         def create_new_database(self):
-            self.__outer.set_db_name(input("Bitte geben sie den Namen der Datenbank ein: "))
+            self.__outer.set_db_name(input("Name der neuen Datenbank: "))
             ui.show_db_menu(self.__outer.get_db_name())
 
         def use_existing_database(self):
-            pass
+            db_name = input("Name der bereits existierenden Datenbank: ")
 
         def write_file(self):
             self.fake_db = fake_db.Fake_db()
