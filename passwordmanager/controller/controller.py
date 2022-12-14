@@ -10,7 +10,7 @@ class Controller:
     def __init__(self):
         self.__startup_menu = self.Startup_menu(self)
         self.__db_menu = self.DB_menu(self)
-        self.__db = db.Db()
+        self.__db = db.Db() #DB-Switch
 
     def run(self):
         self.__startup_menu.run()
@@ -31,10 +31,10 @@ class Controller:
         self.__db.set_db_name(db_name)
 
     def get_db(self):
-        return self.__db
+        return self.__db.get_db
 
     def set_db(self, db):
-        self.__db = db
+        self.__db.set_db(db)
 
     class Startup_menu:
         def __init__(self, outer):
@@ -71,7 +71,7 @@ class Controller:
         def switch_db_menu_action(self):
             match self.__action:
                 case 1:
-                    pass
+                    self.show_db()
                 case 2:
                     pass
                 case 3:
@@ -81,12 +81,21 @@ class Controller:
                 case 5:
                     pass
 
+        def __read_db_menu_action(self):
+            self.__action = int(input("Was möchten sie tun? "))
+
         def create_new_database(self):
             self.__outer.set_db_name(input("Name der neuen Datenbank: "))
+            self.__outer.set_db([])
             ui.show_db_menu(self.__outer.get_db_name())
+            self.__read_db_menu_action()
+            self.switch_db_menu_action()
 
         def use_existing_database(self):
             db_name = input("Name der bereits existierenden Datenbank: ")
+
+        def show_db(self):
+            ui.show_db([])
 
         def write_file(self):
             self.fake_db = fake_db.Fake_db()
