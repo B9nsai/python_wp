@@ -17,6 +17,9 @@ class Passwordmanager:
     
     def run(self):
         self.controller.run()
-            
-passwordmanager = Passwordmanager()
-passwordmanager.run()
+
+def main():
+    passwordmanager = Passwordmanager()
+    passwordmanager.run()
+
+main()
