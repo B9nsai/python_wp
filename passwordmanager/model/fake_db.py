@@ -17,6 +17,12 @@ class FakeDb(DbInterface):
             }
         ]
 
+    def get_db_name(self):
+        return self.__db_name
+
+    def set_db_name(self, db_name):
+        self.db_name = db_name    
+
     def get_db(self):
         return self.__db
 

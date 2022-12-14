@@ -3,12 +3,14 @@ import json
 
 sys.path.append('../model')
 from model import fake_db
+from model import db
 from view import passwordmanager_ui as ui
 
 class Controller:
     def __init__(self):
         self.__startup_menu = self.Startup_menu(self)
         self.__db_menu = self.DB_menu(self)
+        self.__db = db.Db()
 
     def run(self):
         self.__startup_menu.run()
@@ -23,10 +25,10 @@ class Controller:
         self.__db_menu.write_file()
 
     def get_db_name(self):
-        return self.__db_name
+        return self.__db.get_db_name()
 
     def set_db_name(self, db_name):
-        self.__db_name = db_name
+        self.__db.set_db_name(db_name)
 
     def get_db(self):
         return self.__db
