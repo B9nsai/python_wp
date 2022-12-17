@@ -6,6 +6,7 @@ import database
 class passwordmanager:
         
     def __init__(self):
+        self.__path_to_db = "db_files/"
         self.__db = database.database()
 
     def main(self):
@@ -35,12 +36,13 @@ class passwordmanager:
                 exit()
 
     def create_new_database(self):
-        self.__db.set_name(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein:")))
+        self.__db.set_name(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein: ")))
         self.run_db_menu()
 
 
     def use_existing_database(self):
-        self.__db.set_name(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein:")))
+        self.__db.set_name(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein: ")))
+        self.read_database()
         self.run_db_menu()
 
     def run_db_menu(self):
@@ -127,9 +129,17 @@ class passwordmanager:
         print(str(count_updates) + " Passwörter geändert")
         
     def dump_database(self):
-        json_name = self.__db.get_name() + ".json"
-        with open(json_name, "w") as outfile:
+        file_name = self.__path_to_db +  self.__db.get_name() + ".json"
+        with open(file_name, "w") as outfile:
+            outfile.write("{\n")
             outfile.write(json.dumps(self.__db.get_list(), indent=2))
+            outfile.write("\n}")
+
+    def read_database(self):
+        file_name = self.__path_to_db +  self.__db.get_name() + ".json"
+        with open(file_name, "r") as infile:
+            tmp = json.load(infile)
+            self.__db.set_list(json.load(infile))
 
 pw_manager = passwordmanager()
 pw_manager.main()
