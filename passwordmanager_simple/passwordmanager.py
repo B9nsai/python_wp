@@ -16,15 +16,19 @@ def show_startup_menu():
     print("  3) Abbruch \n")
 
 def switch_startup_menu_option():
-    
     match int(input("\nOption eingeben: ")):
         case 1:
-            pass
+            create_new_database()
         case 2:
-            pass
+            use_existing_database()
         case 3:
-            pass
+            print("3")
 
+def create_new_database():
+    pass
+
+def use_existing_database():
+    pass
 
 def show_db_menu(db_name):
         print("\n=============================================")
@@ -37,6 +41,7 @@ def show_db_menu(db_name):
         print("  5) Beenden\n")
 
         int(input("\nOption eingeben: "))
+
 
 def show_db(db):
     print("\n=============================================")
