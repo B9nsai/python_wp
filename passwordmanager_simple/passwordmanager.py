@@ -5,7 +5,7 @@ def main():
 
 def run_startup_menu():
     show_startup_menu()
-    switch_startup_menu_option()
+    match_startup_menu_option()
 
 def show_startup_menu():
     print("\n=============================================")
@@ -15,7 +15,7 @@ def show_startup_menu():
     print("  2) Existierende Passwortdatenbank verwenden")
     print("  3) Abbruch \n")
 
-def switch_startup_menu_option():
+def match_startup_menu_option():
     match int(input("\nOption eingeben: ")):
         case 1:
             create_new_database()
