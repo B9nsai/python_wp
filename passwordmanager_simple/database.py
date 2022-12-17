@@ -1,6 +1,7 @@
 class database:
     def __init__(self):
-        pass
+        self.__name = ""
+        self.__list = []
 
     def get_name(self):
         return self.__name

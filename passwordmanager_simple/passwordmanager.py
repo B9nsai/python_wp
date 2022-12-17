@@ -34,12 +34,16 @@ class passwordmanager:
 
     def create_new_database(self):
         self.__db.set_name(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein:")))
-        self.show_db_menu()
+        self.run_db_menu()
 
 
     def use_existing_database(self):
         self.__db.set_name(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein:")))
+        self.run_db_menu()
+
+    def run_db_menu(self):
         self.show_db_menu()
+        self.match_db_menu_option()
 
     def show_db_menu(self):
             print("\n=============================================")
@@ -51,12 +55,12 @@ class passwordmanager:
             print("  4) Passwort aktualisieren")
             print("  5) Abbruch\n")
 
-            int(input("\nOption eingeben: "))
+            self.__db_menu_option = int(input("\nOption eingeben: "))
 
-    def match_db_menu_option(self, option: int):
-        match option:
+    def match_db_menu_option(self):
+        match self.__db_menu_option:
             case 1:
-                self.show_db(self.db.get_name())
+                self.show_db()
             case 2:
                 pass
             case 3:
@@ -66,11 +70,11 @@ class passwordmanager:
             case 5:
                 pass
 
-    def show_db(db):
+    def show_db(self):
         print("\n=============================================")
         print("URL          Name        Passwort       Notiz")
         print("=============================================")
-        for line in db.get:
+        for line in self.__db.get_list():
             print(line)
 
 pw_manager = passwordmanager()
