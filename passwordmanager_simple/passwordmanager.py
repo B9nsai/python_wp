@@ -1,53 +1,75 @@
 #!/usr/bin/python3
-def main():
-    while(True):
-        run_startup_menu()
 
-def run_startup_menu():
-    show_startup_menu()
-    match_startup_menu_option()
+import database
+class passwordmanager:
+        
+    def __init__(self):
+        self.__db = database.database()
 
-def show_startup_menu():
-    print("\n=============================================")
-    print("               Passwordmanager               ")
-    print("=============================================")
-    print("  1) Neue Passwortdatenbank erstellen        ")
-    print("  2) Existierende Passwortdatenbank verwenden")
-    print("  3) Abbruch \n")
+    def main(self):
+        while(True):
+            db = database.database()
+            self.run_startup_menu()
 
-def match_startup_menu_option():
-    match int(input("\nOption eingeben: ")):
-        case 1:
-            create_new_database()
-        case 2:
-            use_existing_database()
-        case 3:
-            print("3")
+    def run_startup_menu(self):
+        self.show_startup_menu()
+        self.match_startup_menu_option()
 
-def create_new_database():
-    pass
-
-def use_existing_database():
-    pass
-
-def show_db_menu(db_name):
+    def show_startup_menu(self):
         print("\n=============================================")
-        print("               Passwordmanager " + db_name)
+        print("               Passwordmanager               ")
         print("=============================================")
-        print("  1) Bereits existierende Passwörter anzeigen")
-        print("  2) Neues Passwort hinzufügen")
-        print("  3) Bereits existierendes Passwort löschen")
-        print("  4) Passwort aktualisieren")
-        print("  5) Beenden\n")
+        print("  1) Neue Passwortdatenbank erstellen        ")
+        print("  2) Existierende Passwortdatenbank verwenden")
+        print("  3) Beenden \n")
 
-        int(input("\nOption eingeben: "))
+    def match_startup_menu_option(self):
+        match int(input("\nOption eingeben: ")):
+            case 1:
+                self.create_new_database()
+            case 2:
+                self.use_existing_database()
+            case 3:
+                exit()
+
+    def create_new_database(self):
+        self.show_db_menu(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein:")))
 
 
-def show_db(db):
-    print("\n=============================================")
-    print("URL          Name        Passwort       Notiz")
-    print("=============================================")
-    for line in db.get:
-        print(line)
+    def use_existing_database(self):
+        self.show_db_menu(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein:")))
 
-main()
+    def show_db_menu(self, db_name):
+            print("\n=============================================")
+            print("               Passwordmanager " + db_name)
+            print("=============================================")
+            print("  1) Bereits existierende Passwörter anzeigen")
+            print("  2) Neues Passwort hinzufügen")
+            print("  3) Bereits existierendes Passwort löschen")
+            print("  4) Passwort aktualisieren")
+            print("  5) Abbruch\n")
+
+            int(input("\nOption eingeben: "))
+
+    def match_db_menu_option(self, option: int):
+        match option:
+            case 1:
+                self.show_db(self.db.get_name())
+            case 2:
+                pass
+            case 3:
+                pass
+            case 4:
+                pass
+            case 5:
+                pass
+
+    def show_db(db):
+        print("\n=============================================")
+        print("URL          Name        Passwort       Notiz")
+        print("=============================================")
+        for line in db.get:
+            print(line)
+
+pw_manager = passwordmanager()
+pw_manager.main()
