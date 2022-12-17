@@ -33,15 +33,17 @@ class passwordmanager:
                 exit()
 
     def create_new_database(self):
-        self.show_db_menu(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein:")))
+        self.__db.set_name(str(input("Bitte geben sie den Namen der zu erstellenden Datenbank ein:")))
+        self.show_db_menu()
 
 
     def use_existing_database(self):
-        self.show_db_menu(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein:")))
+        self.__db.set_name(str(input("Bitte geben sie den Namen der bereits existierenden Datenbank ein:")))
+        self.show_db_menu()
 
-    def show_db_menu(self, db_name):
+    def show_db_menu(self):
             print("\n=============================================")
-            print("               Passwordmanager " + db_name)
+            print("               Passwordmanager " + self.__db.get_name())
             print("=============================================")
             print("  1) Bereits existierende Passwörter anzeigen")
             print("  2) Neues Passwort hinzufügen")
