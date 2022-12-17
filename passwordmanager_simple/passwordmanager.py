@@ -68,7 +68,7 @@ class passwordmanager:
             case 3:
                 self.delete_password()
             case 4:
-                pass
+                self.update_password()
             case 5:
                 pass
 
@@ -95,22 +95,34 @@ class passwordmanager:
         self.__db.add_to_list(entry)
 
     def delete_password(self):
-        pass
         url = str(input("URL des zu löschenden Passworts: "))
-
         list_copy = self.__db.get_list().copy()
-
         is_deleted = False
 
-        for line in list_copy:
+        for line in self.__db.get_list():
             if line.get("url") == url:
-                self.__db.get_list().remove(line)
+                list_copy.remove(line)
                 is_deleted = True
 
         if is_deleted:
+            self.__db.set_list(list_copy)
             print("Löschen erfolgreich")
         else:
             print("URL nicht gefunden")
+
+    def update_password(self):
+        url = str(input("URL des zu ändernden Passworts: "))
+        password = str(input("Neues Passwort: "))
+        list_copy = self.__db.get_list().copy()
+        count_updates = 0
+
+        for line in self.__db.get_list():
+            if line.get("url") == url:
+                line["password"] = password
+                count_updates += 1
+            
+        print(str(count_updates) + " Passwörter geändert")
+
 
 pw_manager = passwordmanager()
 pw_manager.main()
