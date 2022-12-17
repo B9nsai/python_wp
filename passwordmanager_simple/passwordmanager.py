@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import json
+
 import database
 class passwordmanager:
         
@@ -46,6 +48,7 @@ class passwordmanager:
         while(self.__db_menu_option != 5):    
             self.show_db_menu()
             self.match_db_menu_option()
+            self.dump_database()
 
     def show_db_menu(self):
             print("\n=============================================")
@@ -122,7 +125,11 @@ class passwordmanager:
                 count_updates += 1
             
         print(str(count_updates) + " Passwörter geändert")
-
+        
+    def dump_database(self):
+        json_name = self.__db.get_name() + ".json"
+        with open(json_name, "w") as outfile:
+            outfile.write(json.dumps(self.__db.get_list(), indent=2))
 
 pw_manager = passwordmanager()
 pw_manager.main()
