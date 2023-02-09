@@ -50,9 +50,22 @@ class bmi:
         self.__bmi_label.grid(column = 0, row = 5, columnspan = 2, padx = 25, pady = 100)
 
     def __berechne_bmi(self):
-        print("button pressed")
+        bmi = float(self.weight_input_field.get()) / pow(float(self.height_input_field.get()), 2)
+        self.__bmi_label.configure(text = "BMI-Wert: " + str(round(bmi, 2)))
+        self.set_bmi_coloring(round(bmi, 2))
 
-
-        
+def set_bmi_coloring(self, bmi):
+        if bmi <= 17:
+            self.__bmi_label.configure(fg_color = "#e78284", text_color = "black")
+        elif bmi <= 18.5 and bmi > 17:
+            self.__bmi_label.configure(fg_color = "#e5c890", text_color = "black")
+        elif bmi <= 25 and bmi > 18.5:
+            self.__bmi_label.configure(fg_color = "#a6d189", text_color = "black")
+        elif bmi <= 30 and bmi > 25:
+            self.__bmi_label.configure(fg_color = "#e5c890", text_color = "black")
+        elif bmi <= 35 and bmi > 30:
+            self.__bmi_label.configure(fg_color = "#ef9f76", text_color = "black")
+        elif bmi > 35:
+            self.bmi_label.configure(fg_color = "#e78284", text_color = "black")
 
 bmi = bmi()
